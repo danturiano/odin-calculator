@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project: Calculator</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="display">
+        <span class="result">0</span>
+      </div>
+      <div class="buttons">
+        <div class="row">
+          <button class="gray-btn clear">AC</button>
+          <button class="gray-btn posneg">+/-</button>
+          <button class="gray-btn modu">%</button>
+          <button class="orange-btn divide">/</button>
+        </div>
+        <div class="row">
+          <button class="light-gray-btn seven">7</button>
+          <button class="light-gray-btn eight">8</button>
+          <button class="light-gray-btn nine">9</button>
+          <button class="orange-btn multiply">*</button>
+        </div>
+        <div class="row">
+          <button class="light-gray-btn four">4</button>
+          <button class="light-gray-btn five">5</button>
+          <button class="light-gray-btn six">6</button>
+          <button class="orange-btn minus">-</button>
+        </div>
+        <div class="row">
+          <button class="light-gray-btn one">1</button>
+          <button class="light-gray-btn two">2</button>
+          <button class="light-gray-btn three">3</button>
+          <button class="orange-btn add">+</button>
+        </div>
+        <div class="row">
+          <button class="zero light-gray-btn">0</button>
+          <button class="light-gray-btn decimal">.</button>
+          <button class="orange-btn equal">=</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="script.js"></script>
+</html>
+
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .container {
+    border: 12px solid #495057;
+    width: 400px;
+    height: 500px;
+  }
+
+  .display {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 100px;
+    background-color: #ced4da;
+    border: 10px solid #343a40;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .result {
+    font-size: 60px;
+    margin-right: 15px;
+  }
+
+  .zero {
+    width: 200px;
+  }
+
+  .orange-btn {
+    background-color: #f59f00;
+  }
+
+  .gray-btn {
+    background-color: #adb5bd;
+  }
+
+  .light-gray-btn {
+    background-color: #868e96;
+  }
+
+  button {
+    width: 100px;
+    height: 76px;
+    font-size: 20px;
+    border: 1px solid #495057;
+  }
+</style>
