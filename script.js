@@ -28,3 +28,14 @@ function operate(operator, firstNumber, secondNumber) {
       return divide(firstNumber, secondNumber);
   }
 }
+
+let firstNumber;
+let secondNumber;
+let prevTotal;
+
+const one = document.querySelector(".one");
+const two = document.querySelector(".two");
+const plus = document.querySelector(".add");
+const equal = document.querySelector(".equal");
+const result = document.querySelector(".result");
+const clear = document.querySelector(".clear");
