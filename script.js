@@ -31,6 +31,33 @@ function operate(operator, firstVal, secondVal) {
   }
 }
 
+function equals() {
+  if (eqCount >= 3 && opContinue == true) {
+    firstNumber = outNumber;
+    output = operate(operator, firstNumber, secondNumber);
+    result.textContent = output;
+    outNumber = output;
+    console.log("this runnn");
+    resetOperation();
+  } else {
+    output = operate(operator, firstNumber, secondNumber);
+    console.log("this run");
+    outNumber = output;
+    result.textContent = output;
+    eqCount++;
+    resetOperation();
+  }
+}
+
+function resetEQCount() {
+  if (eqCount == 2) {
+    eqCount = 0;
+  }
+  if (currNumber == 1 && eqCount >= 3) {
+    eqCount = 0;
+  }
+}
+
 function evaluate(s) {
   if (currNumber == 1) {
     return (firstNumber += s);
@@ -62,53 +89,42 @@ let currNumber = 1;
 const one = document.querySelector(".one");
 const two = document.querySelector(".two");
 const plus = document.querySelector(".add");
+const minus = document.querySelector(".minus");
 const equal = document.querySelector(".equal");
 const result = document.querySelector(".result");
 const clear = document.querySelector(".clear");
 
 one.addEventListener("click", () => {
   evaluate("1");
-  if (eqCount == 2) {
-    eqCount = 0;
-  }
-  if (currNumber == 1 && eqCount >= 3) {
-    eqCount = 0;
-  }
+  resetEQCount();
 });
 
 two.addEventListener("click", () => {
   evaluate("2");
-  if (eqCount == 2) {
-    eqCount = 0;
-  }
-  if (currNumber == 1 && eqCount >= 3) {
-    eqCount = 0;
-  }
+  resetEQCount();
 });
 
 plus.addEventListener("click", () => {
-  eqCount++;
   setOperator("+");
   currNumber = 2;
+  eqCount++;
+  if (eqCount > 2) {
+    opContinue = true;
+  }
+});
+
+minus.addEventListener("click", () => {
+  setOperator("-");
+  currNumber = 2;
+  eqCount++;
   if (eqCount > 2) {
     opContinue = true;
   }
 });
 
 equal.addEventListener("click", () => {
-  if (eqCount >= 3 && opContinue == true) {
-    firstNumber = outNumber;
-    output = operate(operator, firstNumber, secondNumber);
-    result.textContent = output;
-    outNumber = output;
-    console.log("this runnn");
-    resetOperation();
+  if (firstNumber == "" && secondNumber == "") {
   } else {
-    output = operate(operator, firstNumber, secondNumber);
-    console.log("this run");
-    outNumber = output;
-    result.textContent = output;
-    eqCount++;
-    resetOperation();
+    equals();
   }
 });
