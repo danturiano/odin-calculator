@@ -33,16 +33,14 @@ function operate(operator, firstVal, secondVal) {
 
 function equals() {
   if (eqCount >= 3 && opContinue == true) {
-    firstNumber = outNumber;
+    firstNumber = output;
     output = operate(operator, firstNumber, secondNumber);
     result.textContent = output;
-    outNumber = output;
     console.log("this runnn");
     resetOperation();
   } else {
     output = operate(operator, firstNumber, secondNumber);
     console.log("this run");
-    outNumber = output;
     result.textContent = output;
     eqCount++;
     resetOperation();
@@ -58,6 +56,36 @@ function resetEQCount() {
   }
 }
 
+function evaluateOperator(operat) {
+  disableEqual();
+  result.textContent = "";
+  currNumber = 2;
+  eqCount++;
+  if (eqCount > 2) {
+    opContinue = true;
+  }
+  if (firstNumber != "" && secondNumber != "") {
+    equals();
+    firstNumber = output;
+    currNumber = 2;
+  }
+  if (firstNumber == "" && secondNumber != "") {
+    firstNumber = output;
+    equals();
+    firstNumber = output;
+    currNumber = 2;
+  }
+  operator = operat;
+}
+
+function evaluateEqual() {
+  if (firstNumber == "" && secondNumber == "") {
+  } else if (disableEqualbtn == true) {
+  } else {
+    equals();
+  }
+}
+
 function evaluate(s) {
   if (currNumber == 1) {
     return (firstNumber += s);
@@ -69,6 +97,14 @@ function setOperator(s) {
   return operator;
 }
 
+function disableEqual() {
+  disableEqualbtn = true;
+}
+
+function enableEqual() {
+  disableEqualbtn = false;
+}
+
 function resetOperation() {
   currNumber = 1;
   firstNumber = "";
@@ -77,54 +113,117 @@ function resetOperation() {
 
 let firstNumber = "";
 let secondNumber = "";
-let prevNumber = "";
 let output = "";
-let outNumber = "";
-let opContinue = false;
-let operator;
+let operator = "";
 let eqCount = 0;
-
 let currNumber = 1;
+let opContinue = false;
+let disableEqualbtn = false;
 
+const zero = document.querySelector(".zero");
 const one = document.querySelector(".one");
 const two = document.querySelector(".two");
+const three = document.querySelector(".three");
+const four = document.querySelector(".four");
+const five = document.querySelector(".five");
+const six = document.querySelector(".six");
+const seven = document.querySelector(".seven");
+const eight = document.querySelector(".eight");
+const nine = document.querySelector(".nine");
 const plus = document.querySelector(".add");
 const minus = document.querySelector(".minus");
+const multi = document.querySelector(".multiply");
+const divi = document.querySelector(".divide");
 const equal = document.querySelector(".equal");
 const result = document.querySelector(".result");
 const clear = document.querySelector(".clear");
 
-one.addEventListener("click", () => {
-  evaluate("1");
-  resetEQCount();
-});
-
-two.addEventListener("click", () => {
-  evaluate("2");
-  resetEQCount();
-});
-
 plus.addEventListener("click", () => {
-  setOperator("+");
-  currNumber = 2;
-  eqCount++;
-  if (eqCount > 2) {
-    opContinue = true;
-  }
+  evaluateOperator("+");
 });
 
 minus.addEventListener("click", () => {
-  setOperator("-");
-  currNumber = 2;
-  eqCount++;
-  if (eqCount > 2) {
-    opContinue = true;
-  }
+  evaluateOperator("-");
+});
+
+multi.addEventListener("click", () => {
+  evaluateOperator("*");
+});
+
+divi.addEventListener("click", () => {
+  evaluateOperator("/");
 });
 
 equal.addEventListener("click", () => {
-  if (firstNumber == "" && secondNumber == "") {
-  } else {
-    equals();
-  }
+  evaluateEqual();
+});
+
+zero.addEventListener("click", () => {
+  enableEqual();
+  resetEQCount();
+  number = evaluate("0");
+  result.textContent = number;
+});
+
+one.addEventListener("click", () => {
+  enableEqual();
+  resetEQCount();
+  number = evaluate("1");
+  result.textContent = number;
+});
+
+two.addEventListener("click", () => {
+  enableEqual();
+  resetEQCount();
+  number = evaluate("2");
+  result.textContent = number;
+});
+
+three.addEventListener("click", () => {
+  enableEqual();
+  resetEQCount();
+  number = evaluate("3");
+  result.textContent = number;
+});
+
+four.addEventListener("click", () => {
+  enableEqual();
+  resetEQCount();
+  number = evaluate("4");
+  result.textContent = number;
+});
+
+five.addEventListener("click", () => {
+  enableEqual();
+  resetEQCount();
+  number = evaluate("5");
+  result.textContent = number;
+});
+
+six.addEventListener("click", () => {
+  enableEqual();
+  resetEQCount();
+  number = evaluate("6");
+  result.textContent = number;
+});
+
+seven.addEventListener("click", () => {
+  enableEqual();
+  resetEQCount();
+  number = evaluate("7");
+  result.textContent = number;
+});
+
+eight.addEventListener("click", () => {
+  enableEqual();
+  resetEQCount();
+  number = evaluate("8");
+  result.textContent = number;
+});
+
+nine.addEventListener("click", () => {
+  enableEqual();
+  resetEQCount();
+  number = evaluate("9");
+  result.textContent = number;
 });
