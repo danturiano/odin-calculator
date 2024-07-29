@@ -1,3 +1,108 @@
+let firstNumber = "";
+let secondNumber = "";
+let output = "";
+let operator = "";
+let eqCount = 0;
+let currNumber = 1;
+let opContinue = false;
+let disableEqualBtn = false;
+
+const zero = document.querySelector(".zero");
+const one = document.querySelector(".one");
+const two = document.querySelector(".two");
+const three = document.querySelector(".three");
+const four = document.querySelector(".four");
+const five = document.querySelector(".five");
+const six = document.querySelector(".six");
+const seven = document.querySelector(".seven");
+const eight = document.querySelector(".eight");
+const nine = document.querySelector(".nine");
+const decimal = document.querySelector(".decimal");
+
+const plus = document.querySelector(".add");
+const minus = document.querySelector(".minus");
+const multi = document.querySelector(".multiply");
+const divi = document.querySelector(".divide");
+const equal = document.querySelector(".equal");
+const modulo = document.querySelector(".modu");
+
+const result = document.querySelector(".result");
+const clear = document.querySelector(".clear");
+
+result.textContent = "0";
+
+plus.addEventListener("click", () => {
+  evaluateOperator("+");
+});
+
+minus.addEventListener("click", () => {
+  evaluateOperator("-");
+});
+
+multi.addEventListener("click", () => {
+  evaluateOperator("*");
+});
+
+divi.addEventListener("click", () => {
+  evaluateOperator("/");
+});
+
+modulo.addEventListener("click", () => {
+  evaluateOperator("%");
+});
+
+equal.addEventListener("click", () => {
+  evaluateEqual();
+});
+
+clear.addEventListener("click", () => {
+  clearAll();
+});
+
+decimal.addEventListener("click", () => {
+  evaluateNumber(".");
+});
+
+zero.addEventListener("click", () => {
+  evaluateNumber("0");
+});
+
+one.addEventListener("click", () => {
+  evaluateNumber("1");
+});
+
+two.addEventListener("click", () => {
+  evaluateNumber("2");
+});
+
+three.addEventListener("click", () => {
+  evaluateNumber("3");
+});
+
+four.addEventListener("click", () => {
+  evaluateNumber("4");
+});
+
+five.addEventListener("click", () => {
+  evaluateNumber("5");
+});
+
+six.addEventListener("click", () => {
+  evaluateNumber("6");
+});
+
+seven.addEventListener("click", () => {
+  evaluateNumber("7");
+});
+
+eight.addEventListener("click", () => {
+  evaluateNumber("8");
+});
+
+nine.addEventListener("click", () => {
+  evaluateNumber("9");
+});
+
 function add(firstVal, secondVal) {
   return firstVal + secondVal;
 }
@@ -14,9 +119,13 @@ function divide(firstVal, secondVal) {
   return firstVal / secondVal;
 }
 
+function modulos(firstVal, secondVal) {
+  return firstVal % secondVal;
+}
+
 function operate(operator, firstVal, secondVal) {
-  firstVal = parseInt(firstVal);
-  secondVal = parseInt(secondVal);
+  firstVal = Number(firstVal);
+  secondVal = Number(secondVal);
   console.log(firstVal);
   console.log(secondVal);
   switch (operator) {
@@ -28,7 +137,21 @@ function operate(operator, firstVal, secondVal) {
       return multiply(firstVal, secondVal);
     case "/":
       return divide(firstVal, secondVal);
+    case "%":
+      return modulos(firstVal, secondVal);
   }
+}
+
+function clearAll() {
+  firstNumber = "";
+  secondNumber = "";
+  output = "";
+  operator = "";
+  eqCount = 0;
+  currNumber = 1;
+  opContinue = false;
+  disableEqualbtn = false;
+  result.textContent = "0";
 }
 
 function equals() {
@@ -92,17 +215,24 @@ function evaluate(s) {
   } else return (secondNumber += s);
 }
 
+function evaluateNumber(s) {
+  enableEqual();
+  resetEQCount();
+  number = evaluate(s);
+  result.textContent = number;
+}
+
 function setOperator(s) {
   operator = s;
   return operator;
 }
 
 function disableEqual() {
-  disableEqualbtn = true;
+  disableEqualBtn = true;
 }
 
 function enableEqual() {
-  disableEqualbtn = false;
+  disableEqualBtn = false;
 }
 
 function resetOperation() {
@@ -110,120 +240,3 @@ function resetOperation() {
   firstNumber = "";
   secondNumber = "";
 }
-
-let firstNumber = "";
-let secondNumber = "";
-let output = "";
-let operator = "";
-let eqCount = 0;
-let currNumber = 1;
-let opContinue = false;
-let disableEqualbtn = false;
-
-const zero = document.querySelector(".zero");
-const one = document.querySelector(".one");
-const two = document.querySelector(".two");
-const three = document.querySelector(".three");
-const four = document.querySelector(".four");
-const five = document.querySelector(".five");
-const six = document.querySelector(".six");
-const seven = document.querySelector(".seven");
-const eight = document.querySelector(".eight");
-const nine = document.querySelector(".nine");
-const plus = document.querySelector(".add");
-const minus = document.querySelector(".minus");
-const multi = document.querySelector(".multiply");
-const divi = document.querySelector(".divide");
-const equal = document.querySelector(".equal");
-const result = document.querySelector(".result");
-const clear = document.querySelector(".clear");
-
-plus.addEventListener("click", () => {
-  evaluateOperator("+");
-});
-
-minus.addEventListener("click", () => {
-  evaluateOperator("-");
-});
-
-multi.addEventListener("click", () => {
-  evaluateOperator("*");
-});
-
-divi.addEventListener("click", () => {
-  evaluateOperator("/");
-});
-
-equal.addEventListener("click", () => {
-  evaluateEqual();
-});
-
-zero.addEventListener("click", () => {
-  enableEqual();
-  resetEQCount();
-  number = evaluate("0");
-  result.textContent = number;
-});
-
-one.addEventListener("click", () => {
-  enableEqual();
-  resetEQCount();
-  number = evaluate("1");
-  result.textContent = number;
-});
-
-two.addEventListener("click", () => {
-  enableEqual();
-  resetEQCount();
-  number = evaluate("2");
-  result.textContent = number;
-});
-
-three.addEventListener("click", () => {
-  enableEqual();
-  resetEQCount();
-  number = evaluate("3");
-  result.textContent = number;
-});
-
-four.addEventListener("click", () => {
-  enableEqual();
-  resetEQCount();
-  number = evaluate("4");
-  result.textContent = number;
-});
-
-five.addEventListener("click", () => {
-  enableEqual();
-  resetEQCount();
-  number = evaluate("5");
-  result.textContent = number;
-});
-
-six.addEventListener("click", () => {
-  enableEqual();
-  resetEQCount();
-  number = evaluate("6");
-  result.textContent = number;
-});
-
-seven.addEventListener("click", () => {
-  enableEqual();
-  resetEQCount();
-  number = evaluate("7");
-  result.textContent = number;
-});
-
-eight.addEventListener("click", () => {
-  enableEqual();
-  resetEQCount();
-  number = evaluate("8");
-  result.textContent = number;
-});
-
-nine.addEventListener("click", () => {
-  enableEqual();
-  resetEQCount();
-  number = evaluate("9");
-  result.textContent = number;
-});
