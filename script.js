@@ -25,6 +25,7 @@ const multi = document.querySelector(".multiply");
 const divi = document.querySelector(".divide");
 const equal = document.querySelector(".equal");
 const modulo = document.querySelector(".modu");
+const posneg = document.querySelector(".posneg");
 
 const result = document.querySelector(".result");
 const clear = document.querySelector(".clear");
@@ -57,6 +58,10 @@ equal.addEventListener("click", () => {
 
 clear.addEventListener("click", () => {
   clearAll();
+});
+
+posneg.addEventListener("click", () => {
+  positiveNegative();
 });
 
 decimal.addEventListener("click", () => {
@@ -142,6 +147,26 @@ function operate(operator, firstVal, secondVal) {
   }
 }
 
+function positiveNegative() {
+  if (currNumber == 1) {
+    if (firstNumber.includes("-")) {
+      firstNumber = firstNumber.slice(1, 1) + "" + firstNumber.slice(1);
+      result.textContent = firstNumber;
+    } else {
+      firstNumber = firstNumber.slice(0, 0) + "-" + firstNumber.slice(0);
+      result.textContent = firstNumber;
+    }
+  } else {
+    if (secondNumber.includes("-")) {
+      secondNumber = secondNumber.slice(1, 1) + "" + secondNumber.slice(1);
+      result.textContent = secondNumber;
+    } else {
+      secondNumber = secondNumber.slice(0, 0) + "-" + secondNumber.slice(0);
+      result.textContent = secondNumber;
+    }
+  }
+}
+
 function clearAll() {
   firstNumber = "";
   secondNumber = "";
@@ -203,7 +228,7 @@ function evaluateOperator(operat) {
 
 function evaluateEqual() {
   if (firstNumber == "" && secondNumber == "") {
-  } else if (disableEqualbtn == true) {
+  } else if (disableEqualBtn == true) {
   } else {
     equals();
   }
