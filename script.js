@@ -5,7 +5,7 @@ let operator = "";
 let eqCount = 0;
 let currNumber = 1;
 let opContinue = false;
-let disableEqualBtn = false;
+let disableEqualBtn = true;
 
 const zero = document.querySelector(".zero");
 const one = document.querySelector(".one");
@@ -53,6 +53,12 @@ modulo.addEventListener("click", () => {
 });
 
 equal.addEventListener("click", () => {
+  if (firstNumber != "" && secondNumber != "") {
+    enableEqual();
+  }
+  if (secondNumber != "" && currNumber == 2) {
+    enableEqual();
+  }
   evaluateEqual();
 });
 
@@ -107,6 +113,75 @@ eight.addEventListener("click", () => {
 
 nine.addEventListener("click", () => {
   evaluateNumber("9");
+});
+
+document.addEventListener("keyup", (event) => {
+  switch (event.key) {
+    case "0":
+      evaluateNumber("0");
+      break;
+    case "1":
+      evaluateNumber("1");
+      break;
+    case "2":
+      evaluateNumber("2");
+      break;
+    case "3":
+      evaluateNumber("3");
+      break;
+    case "4":
+      evaluateNumber("4");
+      break;
+    case "5":
+      evaluateNumber("5");
+      break;
+    case "6":
+      evaluateNumber("6");
+      break;
+    case "7":
+      evaluateNumber("7");
+      break;
+    case "8":
+      evaluateNumber("8");
+      break;
+    case "9":
+      evaluateNumber("9");
+      break;
+    case "+":
+      evaluateOperator("+");
+      break;
+    case "-":
+      evaluateOperator("-");
+      break;
+    case "*":
+      evaluateOperator("*");
+      break;
+    case "/":
+      evaluateOperator("/");
+      break;
+    case "%":
+      evaluateOperator("%");
+      break;
+    case "=":
+      if (firstNumber != "" && secondNumber != "") {
+        enableEqual();
+      }
+      if (secondNumber != "" && currNumber == 2) {
+        enableEqual();
+      }
+      evaluateEqual();
+    case "Enter":
+      if (firstNumber != "" && secondNumber != "") {
+        enableEqual();
+      }
+      if (secondNumber != "" && currNumber == 2) {
+        enableEqual();
+      }
+      evaluateEqual();
+      break;
+    default:
+      break;
+  }
 });
 
 document.addEventListener("keyup", (event) => {
@@ -190,7 +265,7 @@ function clearAll() {
   eqCount = 0;
   currNumber = 1;
   opContinue = false;
-  disableEqualBtn = false;
+  disableEqualBtn = true;
   result.textContent = "0";
 }
 
@@ -243,8 +318,11 @@ function evaluateOperator(operat) {
 function evaluateEqual() {
   if (firstNumber == "" && secondNumber == "") {
   } else if (disableEqualBtn == true) {
+  } else if (firstNumber != "" && currNumber == 2) {
+    equals();
   } else {
     equals();
+    25;
   }
 }
 
@@ -255,7 +333,6 @@ function evaluate(s) {
 }
 
 function evaluateNumber(s) {
-  enableEqual();
   resetEQCount();
   number = evaluate(s);
   result.textContent = number;
