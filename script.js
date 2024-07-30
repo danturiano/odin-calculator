@@ -66,6 +66,7 @@ posneg.addEventListener("click", () => {
 
 decimal.addEventListener("click", () => {
   evaluateNumber(".");
+  disableDecimal(true);
 });
 
 zero.addEventListener("click", () => {
@@ -108,6 +109,18 @@ nine.addEventListener("click", () => {
   evaluateNumber("9");
 });
 
+document.addEventListener("keyup", (event) => {
+  if (event.key === "Backspace") {
+    if (currNumber == 1) {
+      firstNumber = firstNumber.slice(0, -1);
+      result.textContent = firstNumber;
+    } else {
+      secondNumber = secondNumber.slice(0, -1);
+      result.textContent = secondNumber;
+    }
+  }
+});
+
 function add(firstVal, secondVal) {
   return firstVal + secondVal;
 }
@@ -131,8 +144,6 @@ function modulos(firstVal, secondVal) {
 function operate(operator, firstVal, secondVal) {
   firstVal = Number(firstVal);
   secondVal = Number(secondVal);
-  console.log(firstVal);
-  console.log(secondVal);
   switch (operator) {
     case "+":
       return add(firstVal, secondVal);
@@ -167,6 +178,10 @@ function positiveNegative() {
   }
 }
 
+function disableDecimal(isTrue) {
+  decimal.disabled = isTrue;
+}
+
 function clearAll() {
   firstNumber = "";
   secondNumber = "";
@@ -175,7 +190,7 @@ function clearAll() {
   eqCount = 0;
   currNumber = 1;
   opContinue = false;
-  disableEqualbtn = false;
+  disableEqualBtn = false;
   result.textContent = "0";
 }
 
@@ -184,11 +199,9 @@ function equals() {
     firstNumber = output;
     output = operate(operator, firstNumber, secondNumber);
     result.textContent = output;
-    console.log("this runnn");
     resetOperation();
   } else {
     output = operate(operator, firstNumber, secondNumber);
-    console.log("this run");
     result.textContent = output;
     eqCount++;
     resetOperation();
@@ -206,6 +219,7 @@ function resetEQCount() {
 
 function evaluateOperator(operat) {
   disableEqual();
+  decimal.disabled = false;
   result.textContent = "";
   currNumber = 2;
   eqCount++;
