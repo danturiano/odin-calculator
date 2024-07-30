@@ -6,6 +6,7 @@ let eqCount = 0;
 let currNumber = 1;
 let opContinue = false;
 let disableEqualBtn = true;
+let backspaceEnabled = true;
 
 const zero = document.querySelector(".zero");
 const one = document.querySelector(".one");
@@ -179,19 +180,19 @@ document.addEventListener("keyup", (event) => {
       }
       evaluateEqual();
       break;
-    default:
-      break;
   }
 });
 
 document.addEventListener("keyup", (event) => {
   if (event.key === "Backspace") {
-    if (currNumber == 1) {
-      firstNumber = firstNumber.slice(0, -1);
-      result.textContent = firstNumber;
-    } else {
-      secondNumber = secondNumber.slice(0, -1);
-      result.textContent = secondNumber;
+    if (eqCount == 0 || backspaceEnabled == true) {
+      if (currNumber == 1) {
+        firstNumber = firstNumber.slice(0, -1);
+        result.textContent = firstNumber;
+      } else {
+        secondNumber = secondNumber.slice(0, -1);
+        result.textContent = secondNumber;
+      }
     }
   }
 });
@@ -270,6 +271,7 @@ function clearAll() {
 }
 
 function equals() {
+  backspaceEnabled = false;
   if (eqCount >= 3 && opContinue == true) {
     firstNumber = output;
     output = operate(operator, firstNumber, secondNumber);
@@ -333,6 +335,7 @@ function evaluate(s) {
 }
 
 function evaluateNumber(s) {
+  backspaceEnabled = true;
   resetEQCount();
   number = evaluate(s);
   result.textContent = number;
